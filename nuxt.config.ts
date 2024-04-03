@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     "primevue/resources/themes/aura-light-green/theme.css",
     "primeicons/primeicons.css",
     "primeflex/primeflex.css",
-    // "assets/css/normalize.css",
   ],
   pinia: {
     storesDirs: ["./stores/**"],
