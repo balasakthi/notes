@@ -31,6 +31,10 @@
         </div>
       </div>
 
+      <div class="card flex justify-content-center">
+        <ProgressSpinner v-if="notesData.length === 0" />
+      </div>
+
       <div class="grid pt-5">
         <div
           class="col-12 md:col-6 lg:col-4 xl:col-3"
@@ -38,13 +42,17 @@
           :key="index"
         >
           <Card
-            class="mb-5"
-            style="cursor: pointer"
+            class="mb-5 overflow-hidden"
+            style="cursor: pointer; height: 20rem"
             @click="handleUpdateNote(notes)"
           >
             <template #title>{{ notes.title }}</template>
             <template #content>
-              <p class="m-0" v-html="notes.content"></p>
+              <p
+                class="m-0 overflow-hidden"
+                style="height: 15rem"
+                v-html="notes.content"
+              ></p>
             </template>
           </Card>
         </div>
@@ -63,6 +71,7 @@ definePageMeta({
 const showModal = ref(false);
 const selectedNote = ref(false);
 const searchQuery = ref("");
+const isLoading = ref(false);
 
 import { useUserStore } from "~/stores/user";
 

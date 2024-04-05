@@ -3,7 +3,7 @@
     v-model:visible="isVisible"
     modal
     :header="props.note ? props.note.title : 'New Note'"
-    :style="{ width: '35rem' }"
+    :style="{ width: '50rem' }"
     :closable="isClosable"
   >
     <form @submit.prevent="handleSubmit(title, content, props.note)">
@@ -18,13 +18,14 @@
           />
         </div>
         <div class="field">
-          <Textarea
+          <Editor v-model="content" editorStyle="height: 320px" required />
+          <!-- <Textarea
             id="content"
             rows="4"
             placeholder="Content"
             v-model="content"
             required
-          />
+          /> -->
         </div>
       </div>
 
@@ -63,6 +64,7 @@
 
 <script setup>
 import { ref } from "vue";
+import Editor from "primevue/editor";
 
 const props = defineProps({ isOpen: Boolean, note: Object });
 const emits = defineEmits(["closed"]);
@@ -74,6 +76,8 @@ const error = ref("");
 const isLoading = ref(false);
 const isClosable = ref(false);
 const isDeleting = ref(false);
+
+const value = ref();
 
 import { useUserStore } from "~/stores/user";
 
